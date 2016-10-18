@@ -1,0 +1,40 @@
+<h3>Register as a New Player </h3>
+
+<p>Thank you for your interest in signing up as a tournament player. Please complete the forms below. Each field is required unless otherwise indicated.</p>
+
+<form action="/register/new/player" method="POST">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" class="form-control" id="firstName" name="firstName" required>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text" class="form-control" id="lastName" name="lastName" required>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input id="password" class="form-control" type="password" name="password" required>
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone Number:</label>
+    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(optional)"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="handicap">Official Handicap (if you have one):</label>
+    <input type="number" name="handicap" class="form-control" id="handicap" placeholder="(optional)">
+  </div>
+
+  <input type="submit" class="btn btn-success" value="Register">
+</form>
+
+<br>
+<a href="/">&larr; Back Home</a>
