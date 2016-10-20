@@ -1,14 +1,11 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('maps', {
+    return queryInterface.createTable('teamsTournaments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      userId: {
         type: Sequelize.INTEGER
       },
       teamId: {
@@ -28,6 +25,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('maps');
+    return queryInterface.dropTable('teamsTournaments');
   }
 };

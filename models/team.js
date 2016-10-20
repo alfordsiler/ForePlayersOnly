@@ -2,13 +2,15 @@
 module.exports = function(sequelize, DataTypes) {
   var team = sequelize.define('team', {
     name: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    ownerId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
-        models.team.belongsToMany(models.tournament, {through: "map"});
+        models.team.belongsToMany(models.user, {through: "usersTeams"});
+        models.team.belongsToMany(models.tournament, {through: "teamsTournaments"});
       }
     }
   });
   return team;
 };
+

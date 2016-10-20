@@ -11,7 +11,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      userId: {
+      ownerId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

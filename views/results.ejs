@@ -1,0 +1,20 @@
+  <h3>Here is the weather history for the date and course location:</h3>
+
+  <div>
+
+      <div>
+        <h4>Date: <strong><%= weather.period_of_record.date_start.date.monthname %> 
+        <%= weather.period_of_record.date_start.date.day %></strong></h4>
+        <h4>City: <%=  %></h4>
+        <h4>Average High Temperature: <strong><%= weather.temp_high.avg.F %>&deg;F</strong></h4>
+        <h4>Average Low Temperature: <strong><%= weather.temp_low.avg.F %>&deg;F</strong></h4>
+        <h4>Chance of a Rainy Day: <strong><%= weather.chance_of.chanceofrainday.percentage %>%</strong></h4>
+        <h4>Chance of a Windy Day (winds over 10mph): <strong><%= weather.chance_of.chanceofwindyday.percentage %>%</strong></h4>
+        <h4>Chance of a Cloudy Day: <strong><%= weather.chance_of.chanceofcloudyday.percentage %>%</strong></h4>          
+      </div>
+
+  </div>
+
+<br>
+<a href="/dateSelector">&larr; Search Again</a>
+

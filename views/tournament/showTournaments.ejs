@@ -1,1 +1,10 @@
-<h3>display list of all tournaments</h3>
+<h3>All created tournaments are listed below. Maybe someday I will get them to sort alphabetically and the name of the creator to show up.</h3>
+<hr>
+<% tournaments.forEach(function(tournament){ %>
+
+    <h4>Tournament Name: <%= tournament.name %></h4>
+    <h5>Date: <%= tournament.date %></h5>
+    <p>Created by <%= tournament.user.name %></p>
+
+<% }); %> 
+

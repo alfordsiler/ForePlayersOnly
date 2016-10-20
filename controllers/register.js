@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models');
 var passport = require('../config/ppConfig');
+var isLoggedIn = require('../middleware/isLoggedIn');
 
 //get new player form
 router.get('/new/player', function(req, res){
@@ -10,13 +11,12 @@ router.get('/new/player', function(req, res){
 
 //post new player
 router.post('/new/player', function(req, res){
-  console.log(req.body);
   var email = req.body.email;
   var firstName = req.body.firstName;
   var lastName = req.body.lastName;
   var password = req.body.password;
-  var phone = req.body.phone;
-  var handicap = req.body.handicap;
+  var phone = req.body.phone || null;
+  var handicap = req.body.handicap || null;
 
   db.user.findOrCreate({
     where: { email: email },
@@ -44,25 +44,40 @@ router.post('/new/player', function(req, res){
 });
 
 //get new team form
-router.get('/new/team', function(req, res){
-  res.render('register/newTeam');
+router.get('/new/team', isLoggedIn, function(req, res){
+  db.user.findAll().then(function(users){
+  res.render('register/newTeam', { users: users });
+  });
 });
 
 //post new team 
 router.post('/new/team', function(req, res){
-  console.log(req.body);
-  res.send("success");
+  console.log('/new/team', req.body);
+  var teamName = req.body.teamName;
+  var ownerId = req.user.id;
+  var player1 = req.body.player1;
+  var player2 = req.body.player2;
+  var player3 = req.body.player3;
+  var player4 = req.body.player4;
+  var tournament = req.body.tournament
+
+  db.user.findOne({
+    where: { id:req.user.id }
+  }).then(function(user){
+    if(user) {
+      user.createTeam({
+        name: teamName,
+        ownerId: ownerId,
+      }).then(function(team){
+        if(team){
+          user.addTeam(team);
+        }
+        callback(null);
+      }).then(function(err){
+        res.redirect('/new/team');
+      });
+    }
+  });
 });
-
-// router.get('/facebook', passport.authenticate('facebook', {
-//   scope: ['public_profile', 'email']
-// }));
-
-// router.get('/callback/facebook', passport.authenticate('facebook', {
-//   successRedirect: '/',
-//   failureRedirect: '/auth/login',
-//   failureFlash: 'error occurred, try again dummy',
-//   successFlash: 'You logged in with Facebook!'
-// }));
 
 module.exports = router;

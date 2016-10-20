@@ -9,12 +9,54 @@
   </div>
 
   <div class="form-group">
-    <label for="team">Player:</label>
-
-    </select>
+    <label for="player1">Player 1:</label>
+      <select id="player1" name="player1">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
   </div>
+
+  <div class="form-group">
+    <label for="player2">Player 2:</label>
+      <select id="player2" name="player2">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
+  </div>
+
+    <div class="form-group">
+    <label for="player3">Player 3:</label>
+      <select id="player3" name="player3">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <label for="player4">Player 4:</label>
+      <select id="player4" name="player4">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="tournament">Join this tournament:</label>
+
+  </div>
+
+  <br>
   <input type="submit" class="btn btn-success" value="Register">
 </form>
 
 <br>
 <a href="/">&larr; Back Home</a>
+

@@ -13,15 +13,19 @@
   <body>
     <% include partials/navbar %>
 
+
     <div class="container">
+      <% if(currentUser) { %>
       <p>
-        <strong>User:</strong>
+        <strong>Hi,</strong>
           <% if(currentUser) { %>
-           <%- JSON.stringify(currentUser.firstName) %>
+           <%- currentUser.firstName %> <%- currentUser.lastName %>
           <% } else { %>
             Please sign in to view your profile
           <% } %>
       </p>
+      <% }; %>
+
       <% include partials/alerts %>
       <%- body %>
     </div>

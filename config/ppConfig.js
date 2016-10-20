@@ -28,4 +28,47 @@ passport.use(new LocalStrategy({
   }).catch(cb);
 }));
 
+// passport.use(new FacebookStrategy({
+//   clientID: process.env.FACEBOOK_APP_ID,
+//   clientSecret: process.env.FACEBOOK_APP_SECRET,
+//   callbackURL: process.env.BASE_URL + '/callback/facebook',
+//   profileFields: ['id', 'email', 'displayName'],
+//   enableProof: true
+// }, function(accessToken, refreshToken, profile, cb){
+//   var email = profile.emails ? profile.emails[0].value : null;
+//   db.user.find({
+//     where: { email: email }
+//   }).then(function(existingUser){
+//     if(existingUser && email) {
+//       existingUser.update({
+//         facebookId: profile.id,
+//         facebookToken: accessToken
+//       }).then(function(updatedUser){
+//         cb(null, updatedUser);
+//       }).catch(cb);
+//     } else{
+//       //if the user doesn't exist
+//       db.user.findOrCreate({
+//         where: { facebookId: profile.id },
+//         defauts: {
+//           facebookToken: accessToken,
+//           name: profile.displayName,
+//           email: email
+//         }
+//       }).spread(function(user, created){
+//         //if the user was created
+//         if(created){
+//           return cb(null, user);
+//         } else {
+//           //if user if found
+//           user.facebookToken = accessToken;
+//           user.save().then(function(){
+//             cb(null, user)
+//           }).catch(cb);
+//         }
+//       }).catch(cb);
+//     }
+//   });
+// }));
+
 module.exports = passport;
