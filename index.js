@@ -94,6 +94,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 //controllers
 app.use('/register', require('./controllers/register'));
 app.use('/tournament', require('./controllers/tournament'));
+app.use('/manage', require('./controllers/manage'));
 
 //listen
 var server = app.listen(process.env.PORT || 3000);

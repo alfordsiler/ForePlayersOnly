@@ -52,32 +52,29 @@ router.get('/new/team', isLoggedIn, function(req, res){
 
 //post new team 
 router.post('/new/team', function(req, res){
-  console.log('/new/team', req.body);
-  var teamName = req.body.teamName;
-  var ownerId = req.user.id;
-  var player1 = req.body.player1;
-  var player2 = req.body.player2;
-  var player3 = req.body.player3;
-  var player4 = req.body.player4;
-  var tournament = req.body.tournament
+  var name = req.body.teamName;
+  var userId = req.user.id;
 
-  db.user.findOne({
-    where: { id:req.user.id }
-  }).then(function(user){
-    if(user) {
-      user.createTeam({
-        name: teamName,
-        ownerId: ownerId,
-      }).then(function(team){
-        if(team){
-          user.addTeam(team);
-        }
-        callback(null);
-      }).then(function(err){
-        res.redirect('/new/team');
-      });
+  db.team.findOrCreate({
+    where: {name: name},
+    defaults: {
+      name: name,
+      userId: userId
     }
+  }).spread(function(user, created) {
+    if(created) {
+      req.flash('Created team successfull')
+      res.redirect("/profile")
+    } 
+    else {
+      req.flash('error', 'Team name already exists, please choose a new name');
+      res.redirect('/register/new/team');
+    }
+  }).catch(function(error) {
+    req.flash('error', error.message);
+    res.redirect('/tournament/new');
   });
 });
+
 
 module.exports = router;

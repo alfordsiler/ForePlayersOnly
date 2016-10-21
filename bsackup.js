@@ -86,3 +86,54 @@ module.exports = function(sequelize, DataTypes) {
   });
   return user;
 };
+
+  <div class="form-group">
+    <label for="player1">Player 1:</label>
+      <select id="player1" name="player1">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <label for="player2">Player 2:</label>
+      <select id="player2" name="player2">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
+  </div>
+
+    <div class="form-group">
+    <label for="player3">Player 3:</label>
+      <select id="player3" name="player3">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <label for="player4">Player 4:</label>
+      <select id="player4" name="player4">
+        <% users.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %> 
+        <% }); %>
+      </select>
+  </div>
+
+    <div class="form-group">
+    <label for="tournament">Join this tournament:</label>
+
+      <select id="tournament" name="tournament">
+        <% tournaments.forEach(function(tournament){ %>
+          <option value="<%= tournament.id %>">
+          <%= tournament.name %>
+        <% }); %>
+      </select>
+  </div>

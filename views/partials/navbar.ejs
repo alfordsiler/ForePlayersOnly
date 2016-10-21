@@ -14,20 +14,20 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if(!currentUser) { %>
-        <li><a href="/dateSelector">Date Assist</a></li>
+        <li><a href="/dateSelector">Tournament Date Helper</a></li>
         <li><a href="/register/new/player">Register to Play</a></li>
         <li><a href="/tournament/allTournaments">Find Tournament</a></li>
         <li><a href="/contact">Contact</a></li>
         <li><a href="/signin">Sign In</a></li>
 
         <% } else { %>
-        <li><a href="/dateSelector">Date Assist</a></li>
-        <li><a href="/register/new/player">Register New Player</a></li>
-        <li><a href="/tournament/new">Create your own Tournament</a></li>
-        <li><a href="/register/new/team">Register Team</a></li>
-        <li><a href="/tournament/allTournaments">Find Tournament</a></li>
+        <li><a href="/dateSelector">Tournament Date Helper</a></li>
+        <li><a href="/tournament/new">Create Tournament</a></li>
+        <li><a href="/register/new/team">Create Team</a></li>
+        <li><a href="/tournament/allTournaments">Find a Tournament</a></li>
         <li><a href="/contact">Contact</a></li>
         <li><a href="/profile">View Profile</a></li>
+        <li><a href="/logout">Log Out</a></li>
         <% }; %>
 
       </ul>

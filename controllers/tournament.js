@@ -72,7 +72,7 @@ router.post('/new', function(req, res){
 router.get("/allTournaments", function(req, res){
   db.tournament.findAll({
     include: [db.user],
-    order: '"updatedAt" DESC'
+    order: '"name" ASC'
   }).then(function(tournaments){
     res.render("tournament/showTournaments", { tournaments: tournaments })
   });//end then
