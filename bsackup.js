@@ -137,3 +137,30 @@ module.exports = function(sequelize, DataTypes) {
         <% }); %>
       </select>
   </div>
+
+  router.put('/teams/:id', function(req, res) {
+  console.log('req.body edit Team', req.body);
+  db.team.findOne({
+    where: { name: req.body.name }
+  }).then(function (dupTeam){
+    console.log('dupTeam', dupTeam);
+    if(dupTeam === undefined) {
+      db.team.findById(req.params.id).then(function(team) {
+        if (team) {
+          team.updateAttributes(req.body).then(function() {
+            req.flash('success', 'Successfully edited your team');
+            res.send({msg: 'success'});
+          });
+        } else {
+          res.status(404).send({msg: 'error'});
+        }
+      }).catch(function(err) {
+        res.status(500).send({msg: 'error'});
+      });
+    }
+    else{
+      req.flash('error', 'team already exists');
+      res.send({msg: 'team exists'});
+    }
+  });
+});

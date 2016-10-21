@@ -3,13 +3,14 @@ var router = express.Router();
 var db = require('../models');
 var passport = require('../config/ppConfig');
 var isLoggedIn = require('../middleware/isLoggedIn');
+var flash = require('connect-flash');
 
+//get new tournament form
 router.get('/new', isLoggedIn, function(req, res){
   res.render('tournament/newTournament');
 });
 
-//write a request on the backend to check for the 
-//value of gimmies and mulligans to check if the value exists before writing to database
+//post the new tournament to table
 router.post('/new', function(req, res){
   // console.log("/tournament/new", req.user);
   console.log("/tournament/new post req.body", req.body);
@@ -56,8 +57,8 @@ router.post('/new', function(req, res){
     }
   }).spread(function(user, created) {
     if(created) {
-      req.flash('Created tournament successfull')
-      res.redirect("/profile")
+      req.flash('success','Created tournament successfull')
+      res.redirect("/manage/tournaments")
     } 
     else {
       req.flash('error', 'Tournament name already exists, please choose a new name');
@@ -69,28 +70,74 @@ router.post('/new', function(req, res){
   });
 });
 
-router.get("/allTournaments", function(req, res){
-  db.tournament.findAll({
-    include: [db.user],
-    order: '"name" ASC'
-  }).then(function(tournaments){
-    res.render("tournament/showTournaments", { tournaments: tournaments })
-  });//end then
-});
+// get to display all tournaments
+router.get("/allTournaments", isLoggedIn, function(req, res){
+  var tournaments;
+  var teams;
+  var user = req.user;
+    db.tournament.findAll()
+      .then(function(resultsTournaments){
+        tournaments = resultsTournaments;
+      })
+      .then(function(){
+        return db.team.findAll({
+          where: { userId: user.id },
+          order: '"name" ASC'})
+      }).then(function(resultsTeams){
+        teams = resultsTeams;
+      }).then(function(){
+        res.render('tournament/showTournaments', { tournaments: tournaments, teams: teams });
+      });
+  });
 
+//post to add teams to tournaments
+// router.post('/allTournaments', function(req, res){
+//   console.log('tournaments to teams', req.body)
+//   db.team.findOne({
+//     where: { id: req.body.teams }
+//   }).then(function(team){
+    
+//     team.addTournament(tournament);
+//   })
+// });
+
+// app.post("/articles/new", function(req, res){
+//     db.author.findOne({
+//       where: {id: req.body.author }
+//     }).then(function(author){
+//       if(author) {
+//         author.createArticle({
+//           title: req.body.title,
+//           content: req.body.content,
+//         }).then(function(article){
+//           if(tags.length > 0) {
+
+//             async.forEachSeries(tags, function(tagName, callback){
+//               db.tag.findOrCreate({
+//                 where: {name: tagName}
+//               }).spread(function(tag, wasCreated){
+//                 if(tag){
+//                   article.addTag(tag); //this creates the relation to the map table
+//                 }
+//                 callback(null);
+//             });
+//             }, function(err) {
+//               res.redirect("/");
+//             });//end of call
+//       }
+//       else {
+//         res.send("author does not exist, try again")
+//       }
+//         }); //end() then for author
+//       } //end if
+//     });
+//   }
+// });
+
+//get to display tournament details
 router.get('/:id/details', isLoggedIn, function(req, res){
   res.render('/tournament/tournamentDetails');
 });
-//Get all posts using a certain tag
-// app.get("/tag/:id", function(req, res){
-//   db.tag.find({
-//     where: { id: req.params.id }
-//   }).then(function(tag){
-//     tag.getArticles().then(function(articles){
-//       res.render("tagDetails", { tagName: tag.name, articles: articles });
-//     });
-//   });//end then
-// });
 
 module.exports = router;
 

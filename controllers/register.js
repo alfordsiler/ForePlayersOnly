@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../models');
 var passport = require('../config/ppConfig');
 var isLoggedIn = require('../middleware/isLoggedIn');
+var flash = require('connect-flash');
 
 //get new player form
 router.get('/new/player', function(req, res){
@@ -17,7 +18,6 @@ router.post('/new/player', function(req, res){
   var password = req.body.password;
   var phone = req.body.phone || null;
   var handicap = req.body.handicap || null;
-
   db.user.findOrCreate({
     where: { email: email },
     defaults: {
@@ -54,7 +54,6 @@ router.get('/new/team', isLoggedIn, function(req, res){
 router.post('/new/team', function(req, res){
   var name = req.body.teamName;
   var userId = req.user.id;
-
   db.team.findOrCreate({
     where: {name: name},
     defaults: {
@@ -63,8 +62,8 @@ router.post('/new/team', function(req, res){
     }
   }).spread(function(user, created) {
     if(created) {
-      req.flash('Created team successfull')
-      res.redirect("/profile")
+      req.flash('success','Successfully created team')
+      res.redirect("/manage/teams")
     } 
     else {
       req.flash('error', 'Team name already exists, please choose a new name');

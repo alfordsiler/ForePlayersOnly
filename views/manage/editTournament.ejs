@@ -1,0 +1,14 @@
+<h3>Edit Tournament</h3>
+
+<form action="/manage/tournaments/<%= tournament.id %>" class="edit-form-tournaments" role="form">
+  <div class="form-group">
+    <label for="name">Tournament Name</label>
+    <input type="text" class="form-control" id="name" placeholder="New Tournament Name" name="name" value="<%= tournament.name %>">
+      <p>continue form for the rest of the tournament details</p>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit Change</button>
+</form>
+
+<br>
+<a href="/manage/tournaments">&larr; Back to Your Tournaments</a>

@@ -1,0 +1,13 @@
+<h3>Edit Team</h3>
+
+<form action="/manage/teams/<%= team.id %>" class="edit-form" role="form">
+  <div class="form-group">
+    <label for="name">Team Name</label>
+    <input type="text" class="form-control" id="name" placeholder="New Team Name" name="name" value="<%= team.name %>">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit Change</button>
+</form>
+
+<br>
+<a href="/manage/teams">&larr; Back to Your Teams</a>

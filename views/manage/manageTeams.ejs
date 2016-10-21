@@ -1,12 +1,13 @@
 <h3>Manage Your Teams</h3>
 <h5>Click on a team to edit</h5>
-<a href="/profile">&larr; Back to Profile</a>
 
 <hr>
 <% teams.forEach(function(team){ %>
 
-    <h4><a href="#"><%= team.name %></a></h4>
-    <p>Created On: <%=  %></p>
+  <h4><a href="/manage/teams/<%= team.id %>"><%= team.name %></a></h4>
+  <p>Created On: <%= team.createdAt %></p>
+
 <hr>
 <% }); %> 
 
+<a href="/profile">&larr; Back to Profile</a>
