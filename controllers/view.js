@@ -28,6 +28,22 @@ router.get('/teams/:id', isLoggedIn, function(req, res){
   });//end then
 });
 
+//delete users from teams
+router.delete('/teams/:id', function(req, res){
+  db.team.findById(req.params.id).then(function(team){
+    if(user){
+      user.destroy().then(function(){
+        req.flash('success', 'Successfully removed player from team');
+        res.send({msg: 'success'});
+      })
+    } else {
+      res.status(404).send( {msg: 'error, try again'});
+    }
+  }).catch(function(err){
+    res.status(500).send({ msg: 'error'});
+  });
+});
+
 //get list of all tournaments
 router.get('/tournaments', isLoggedIn, function(req, res){
   var user = req.user;
