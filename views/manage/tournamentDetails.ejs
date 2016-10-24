@@ -1,9 +1,21 @@
+<div class="background">
+
 <div>
   <h2><%= tournament.name %></h2>
-    <p>List all of the tournament details</p>
+
+    <p>Tournament details</p>
+    <h4><strong>Date: </strong><%= tournament.date %></h4>
+    <h4><strong>Course: </strong><%= tournament.course %></h4>
+    <h4><strong>Format: </strong><%= tournament.format %></h4>
+    <h4><strong>Entry Fee: $</strong><%= tournament.entryFee %></h4>
+    <h4><strong>Meal Details: </strong><%= tournament.mealInfo %></h4>
+    <h4><strong>Other Details: </strong><%= tournament.details %></h4>
+
     <a href="/manage/tournaments/<%= tournament.id %>/edit" class="btn btn-info glyphicon glyphicon-edit"></a>
     <a href="/manage/tournaments/<%= tournament.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn-tournaments"></a>
 </div>
 
 <br>
 <a href="/manage/tournaments">&larr; Back to Your Tournaments</a>
+
+</div>

@@ -1,3 +1,4 @@
+<div class="whiteText">
 <h3>Welcome!</h3>
 
 <h5>We are here to help you figure out your desired date for your tournament. Select a date and enter the city where you plan to host your tournament. You will be provided with weather data to help you plan for potential bad weather.</h5>
@@ -5,15 +6,17 @@
 <form method="GET" action="/dateSelectorResults">
   <div class="form-group">
     <label for="searchDate">Enter your desired day in the following format: MMDD</label>
-    <input type="test" id="searchDate" name="searchDate" placeholder="eg. 0101 or 1231" required>
+    <input style="color: black; width: 75px" type="test" id="searchDate" name="searchDate" placeholder="eg. 1231" required>
   </div>
 
   <div class="form-group">  
     <label for="city">Course location:</label>
-    <input type="text" name="city" placeholder="City">
+    <input style="color: black; width: 230px" type="text" name="city" placeholder="City">   
     <label for="state">State:</label>
-    <input type="text" name="state" placeholder="eg. WA or CA">
+    <input style="color: black; width: 75px" type="text" name="state" placeholder="eg. WA">
   </div>
-    <input type="submit" value="GET WEATHER" id="getWeatherButton">
+    <input type="submit" value="GET WEATHER" id="getWeatherButton" class="btn btn-primary">
   </div>
 </form>
+
+</div>

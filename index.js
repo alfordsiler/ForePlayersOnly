@@ -55,8 +55,6 @@ app.get('/dateSelectorResults', function(req, res){
     if(!error && response.statusCode == 200){
       var weatherResults = JSON.parse(body);
       res.render('results', { weather: weatherResults.trip });
-      // res.redirect(weatherApi);
-      // console.log('Parsed JSON: ', weatherResults);
     }
     else {
       req.flash('An error occured:' + error + 'Try your search again.');
@@ -94,6 +92,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.use('/register', require('./controllers/register'));
 app.use('/tournament', require('./controllers/tournament'));
 app.use('/manage', require('./controllers/manage'));
+app.use('/view', require('./controllers/view'));
 
 //listen
 var server = app.listen(process.env.PORT || 3000);

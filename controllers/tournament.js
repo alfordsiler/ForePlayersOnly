@@ -91,48 +91,21 @@ router.get("/allTournaments", isLoggedIn, function(req, res){
   });
 
 //post to add teams to tournaments
-// router.post('/allTournaments', function(req, res){
-//   console.log('tournaments to teams', req.body)
-//   db.team.findOne({
-//     where: { id: req.body.teams }
-//   }).then(function(team){
-    
-//     team.addTournament(tournament);
-//   })
-// });
-
-// app.post("/articles/new", function(req, res){
-//     db.author.findOne({
-//       where: {id: req.body.author }
-//     }).then(function(author){
-//       if(author) {
-//         author.createArticle({
-//           title: req.body.title,
-//           content: req.body.content,
-//         }).then(function(article){
-//           if(tags.length > 0) {
-
-//             async.forEachSeries(tags, function(tagName, callback){
-//               db.tag.findOrCreate({
-//                 where: {name: tagName}
-//               }).spread(function(tag, wasCreated){
-//                 if(tag){
-//                   article.addTag(tag); //this creates the relation to the map table
-//                 }
-//                 callback(null);
-//             });
-//             }, function(err) {
-//               res.redirect("/");
-//             });//end of call
-//       }
-//       else {
-//         res.send("author does not exist, try again")
-//       }
-//         }); //end() then for author
-//       } //end if
-//     });
-//   }
-// });
+router.post('/allTournaments', function(req, res){
+  console.log('show req.body.teams: ', req.body.teams);
+  console.log('show req.body.tournamentId: ', req.body.tournamentId);
+  db.tournament.findOne({
+    where: { id: req.body.tournamentId }
+  }).then(function(tournament){
+    db.team.findOne({
+      where: { id: req.body.teams }
+    }).then(function(team){
+      tournament.addTeam(team);
+      req.flash('success', 'Team registered for tournament')
+      res.redirect('/profile');
+    });
+  });
+});
 
 //get to display tournament details
 router.get('/:id/details', isLoggedIn, function(req, res){

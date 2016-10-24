@@ -1,0 +1,25 @@
+<div class="background">
+
+<h3>All players are listed below. Use the drop down menu to add that player to your team.</h3>
+<hr>
+<% users.forEach(function(user){ %>
+
+    <h4><%= user.firstName %> <%= user.lastName %></h4>
+    <h5>Handicap: <%= user.handicap %></h5>
+
+  <form action="/manage/addplayers" method="POST">
+    <input type="hidden" name="userId" value="<%= user.id %>">
+    <label for="teams">Your Teams:</label>
+      <select id="teams" name="teams">
+        <% teams.forEach(function(team){ %>
+          <option value="<%= team.id %>">
+          <%= team.name %>
+        <% }); %>
+      </select>
+
+      <input type="submit" class="btn btn-success" value="Add player to this team" style="font-size: 12px; height: 27px;">
+  </form>
+<hr>
+<% }); %> 
+</div>
+<a href="/manage/teams">&larr; Back to Your Teams</a>

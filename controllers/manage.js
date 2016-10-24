@@ -16,9 +16,40 @@ router.get('/teams', isLoggedIn, function(req, res){
   });//end then
 });
 
-//post to add users to teams
-router.post('/teams/add/players', function(req, res){
+//get to show all players and add them to team
+router.get("/addplayers", isLoggedIn, function(req, res){
+  var users;
+  var teams;
+  var user = req.user;
+    db.user.findAll()
+      .then(function(resultsUsers){
+        users = resultsUsers;
+      })
+      .then(function(){
+        return db.team.findAll({
+          where: { userId: user.id },
+          order: '"name" ASC'})
+      }).then(function(resultsTeams){
+        teams = resultsTeams;
+      }).then(function(){
+        res.render('manage/addplayers', { users: users, teams: teams });
+      });
+  });
 
+//post to add users to teams
+router.post('/addplayers', function(req, res){
+  console.log(req.body)
+  db.user.findOne({
+    where: { id: req.body.userId }
+  }).then(function(user){
+    db.team.findOne({
+      where: { id: req.body.teams }
+    }).then(function(team){
+      user.addTeam(team);
+      req.flash('success', 'User added to team')
+      res.redirect('/profile');
+    });
+  });
 });
 
 //get to display single team details
@@ -50,10 +81,6 @@ router.get('/teams/:id/edit', function(req, res){
 //put to edit team
 router.put('/teams/:id', function(req, res) {
   db.team.findById(req.params.id).then(function(team) {
-    // if( ){
-    //   req.flash('error', 'Team name already exists');
-    //   res.send({msg: 'error'});
-    // }
     if (team) {
       team.updateAttributes(req.body).then(function() {
         req.flash('success', 'Successfully edited your team');
@@ -83,7 +110,6 @@ router.delete('/teams/:id', function(req, res){
   });
 });
 
-
 //get to display all tournaments created by logged in user
 router.get("/tournaments", isLoggedIn, function(req, res){
   var user = req.user
@@ -93,11 +119,6 @@ router.get("/tournaments", isLoggedIn, function(req, res){
   }).then(function(tournaments){
     res.render("manage/manageTournaments", { tournaments: tournaments })
   });//end then
-});
-
-//post to add teams to tournaments
-router.post('/teams/enterTournament', function(req, res){
-  
 });
 
 //get to display single tournament details
@@ -112,7 +133,6 @@ router.get('/tournaments/:id', function(req, res) {
     res.status(500).render('error');
   });
 });
-
 
 //get edit team info
 router.get('/tournaments/:id/edit', function(req, res){
@@ -158,7 +178,5 @@ router.delete('/tournaments/:id', function(req, res){
     res.status(500).send({ msg: 'error'});
   });
 });
-
-
 
 module.exports = router;

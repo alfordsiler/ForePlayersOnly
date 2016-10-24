@@ -1,14 +1,45 @@
+<div class="background">
+
 <h3>Edit Tournament</h3>
 
 <form action="/manage/tournaments/<%= tournament.id %>" class="edit-form-tournaments" role="form">
   <div class="form-group">
-    <label for="name">Tournament Name</label>
+    <label for="name">Tournament Name: </label>
     <input type="text" class="form-control" id="name" placeholder="New Tournament Name" name="name" value="<%= tournament.name %>">
-      <p>continue form for the rest of the tournament details</p>
+
+  <div class="form-group">
+    <label for="date">Date: </label>
+    <input type="date" id="date" name="date" value="<%= tournament.date %>">
+  </div>
+
+  <div class="form-group">
+    <label for="course">Course: </label>
+    <input id="course" class="form-control" type="text" name="course" value="<%= tournament.course %>">
+  </div>
+
+  <div class="form-group">
+    <label for="format">Play Format: </label>
+    <input type="text" class="form-control" id="format" name="format" value="<%= tournament.format %>">
+  </div>
+
+  <div class="form-group">
+    <label for="entryFee">Entry Fee: </label>
+    <input type="number" name="entryFee" class="form-control" id="entryFee" placeholder="Do Not Enter with $" value="<%= tournament.entryFee %>">
+  </div>
+
+  <div class="form-group">
+    <label for="mealInfo">Meal Details: </label>
+    <input type="text" class="form-control" id="mealInfo" name="mealInfo" placeholder="If you are providing a meal, please provide a description." value="<%= tournament.mealInfo %>"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="details">Other Details: </label>
+    <input type="text" class="form-control" id="details" name="details" placeholder="Describe other tournament details such as Prizes, KPs, Long Drives, etc." value="<%= tournament.details %>"></textarea>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit Change</button>
 </form>
 
-<br>
+</div>
+
 <a href="/manage/tournaments">&larr; Back to Your Tournaments</a>

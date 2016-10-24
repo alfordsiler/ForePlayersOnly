@@ -1,17 +1,17 @@
 <div class="background">
 
-<h3>Manage Your Tournaments</h3>
-<h5>Click on a tournament to edit</h5>
+<h3>Here are Your Tournaments</h3>
+<h5>Click on a tournament to view the teams registered to play</h5>
 
 <hr>
 <% tournaments.forEach(function(tournament){ %>
 
-  <h4><a href="/manage/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h4>
-  <h5>Date: <%= tournament.date %></h5>
+  <h4><a href="/view/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h4>
   <p>Created On: <%= tournament.createdAt %></p>
 
 <hr>
 <% }); %> 
 
 <a href="/profile">&larr; Back to Profile</a>
+
 </div>

@@ -70,7 +70,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     classMethods: {
       associate: function(models) {
-        models.user.belongsToMany(models.team, {through: "map"});
+        models.user.hasMany(models.tournament);
+        models.user.hasMany(models.team);
+        models.user.belongsToMany(models.team, {through: "users_teams"});
       }
     },
     instanceMethods: {

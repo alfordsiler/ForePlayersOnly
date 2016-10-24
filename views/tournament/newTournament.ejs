@@ -1,6 +1,8 @@
+<div class="background">
+
 <h3>Create your Tournament</h3>
 
-<p>Thank you for your interest in signing up as a tournament player. Please complete the forms below. Each field is required unless otherwise indicated.</p>
+<p>Each field is required unless otherwise indicated.</p>
 
 <form action="/tournament/new" method="POST">
   <div class="form-group">
@@ -9,13 +11,8 @@
   </div>
 
   <div class="form-group">
-    <label for="format">Format:</label>
-    <input type="text" class="form-control" id="format" name="format" required>
-  </div>
-
-  <div class="form-group">
-    <label for="rules">Tournament Rules:</label>
-    <textarea rows="4" cols="50" class="form-control" id="rules" name="rules" required placeholder="Rule Details - Please enter TBD if you would like to add specific rules at a later time"></textarea>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
   </div>
 
   <div class="form-group">
@@ -24,8 +21,8 @@
   </div>
 
   <div class="form-group">
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
+    <label for="format">Play Format:</label>
+    <input type="text" class="form-control" id="format" name="format" required>
   </div>
 
   <div class="form-group">
@@ -34,33 +31,13 @@
   </div>
 
   <div class="form-group">
-    <label for="mulligans">Mulligans Available?:</label><br>
-    <input type="checkbox" value="mulligans" id="mulligans" name="mulligans"> Check if mulligans will be available
-  </div>
-
-  <div class="form-group">
-    <label for="mulliganInfo">Mulligan Details:</label>
-    <textarea rows="4" cols="50" class="form-control" id="mulliganInfo" name="mulliganInfo" placeholder="Please Describe Mulligan circumstances"></textarea>
-  </div>
-
-    <div class="form-group">
-    <label for="gimmies">Allow Gimmies?:</label><br>
-    <input type="checkbox" id="gimmies" name="gimmies" value="gimmies"> Check to allow gimmies
-  </div>
-
-  <div class="form-group">
-    <label for="gimmieInfo">Gimmie Details:</label>
-    <textarea rows="4" cols="50" class="form-control" id="gimmieInfo" name="gimmieInfo" placeholder="Please Describe Gimmie circumstances"></textarea>
-  </div>
-
-  <div class="form-group">
     <label for="mealInfo">Meal Details:</label>
-    <textarea rows="4" cols="50" class="form-control" id="mealInfo" name="mealInfo" placeholder="If you are providing a meal, please provide a description and details"></textarea>
+    <input type="text" class="form-control" id="mealInfo" name="mealInfo" placeholder="If you are providing a meal, please provide a description and details"></textarea>
   </div>
 
   <div class="form-group">
-    <label for="details">Miscellaneous Details:</label>
-    <textarea rows="4" cols="50" class="form-control" id="details" name="details" placeholder="Describe other tournament details, including raffles, KPs, Long Drives, Prizes, etc."></textarea>
+    <label for="details">Other Details:</label>
+    <input type="text" class="form-control" id="details" name="details" placeholder="Describe other tournament details including Prizes, KPs, Long Drives, etc."></textarea>
   </div>
 
   <input type="submit" class="btn btn-success" value="Create Tournament">
@@ -68,3 +45,5 @@
 
 <br>
 <a href="/">&larr; Back Home</a>
+
+</div>
