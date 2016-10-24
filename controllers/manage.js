@@ -134,7 +134,7 @@ router.get('/tournaments/:id', function(req, res) {
   });
 });
 
-//get edit team info
+//get edit tournament info
 router.get('/tournaments/:id/edit', function(req, res){
   db.tournament.findById(req.params.id).then(function(tournament){
     if(tournament){
@@ -149,9 +149,9 @@ router.get('/tournaments/:id/edit', function(req, res){
 
 //edit tournaments
 router.put('/tournaments/:id', function(req, res) {
-  db.tournament.findById(req.params.id).then(function(team) {
-    if (team) {
-      team.updateAttributes(req.body).then(function() {
+  db.tournament.findById(req.params.id).then(function(tournament) {
+    if (tournament) {
+      tournament.updateAttributes(req.body).then(function() {
         req.flash('success', 'Successfully edited your tournament');
         res.send({msg: 'success'});
       });
