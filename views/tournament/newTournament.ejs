@@ -6,38 +6,38 @@
 
 <form action="/tournament/new" method="POST">
   <div class="form-group">
-    <label for="tournamentName">Tournament Name:</label>
+    <label for="tournamentName">Tournament Name:<span style="color: red;">*</span></label>
     <input type="text" class="form-control" id="tournamentName" name="tournamentName" required>
   </div>
 
   <div class="form-group">
-    <label for="date">Date:</label>
+    <label for="date">Date:<span style="color: red;">*</span></label>
     <input type="date" id="date" name="date" required>
   </div>
 
   <div class="form-group">
-    <label for="course">Course:</label>
+    <label for="course">Course:<span style="color: red;">*</span></label>
     <input id="course" class="form-control" type="text" name="course" required>
   </div>
 
   <div class="form-group">
-    <label for="format">Play Format:</label>
+    <label for="format">Play Format:<span style="color: red;">*</span></label>
     <input type="text" class="form-control" id="format" name="format" required>
   </div>
 
   <div class="form-group">
-    <label for="entryFee">Entry Fee:</label>
+    <label for="entryFee">Entry Fee:<span style="color: red;">*</span></label>
     <input type="number" name="entryFee" class="form-control" id="entryFee" placeholder="Do Not Enter with $" required>
   </div>
 
   <div class="form-group">
     <label for="mealInfo">Meal Details:</label>
-    <input type="text" class="form-control" id="mealInfo" name="mealInfo" placeholder="If you are providing a meal, please provide a description and details"></textarea>
+    <input type="text" class="form-control" id="mealInfo" name="mealInfo" placeholder="(Optional) If you are providing a meal, please provide a description and details"></textarea>
   </div>
 
   <div class="form-group">
     <label for="details">Other Details:</label>
-    <input type="text" class="form-control" id="details" name="details" placeholder="Describe other tournament details including Prizes, KPs, Long Drives, etc."></textarea>
+    <input type="text" class="form-control" id="details" name="details" placeholder="(Optional) Describe other tournament details including Prizes, KPs, Long Drives, etc."></textarea>
   </div>
 
   <input type="submit" class="btn btn-success" value="Create Tournament">
