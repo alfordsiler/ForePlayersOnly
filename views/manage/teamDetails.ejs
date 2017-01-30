@@ -1,9 +1,11 @@
 <div class="background">
-  <div>
-    <h2><%= team.name %></h2>
-      <a href="/manage/teams/<%= team.id %>/edit" class="btn btn-info glyphicon glyphicon-edit"></a>
-      <a href="/manage/teams/<%= team.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn"></a>
-  </div>
+  <h3>Here are the players on team "<%= team %>"</h3>
+
+  <% users.forEach(function(user){ %>
+    <ul>
+      <li><h3><%= user.firstName %> <%= user.lastName %> <a style="font-size: 8px;" href="/manage/teams/user/<%= user.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn"></a></h3></li>
+    </ul>
+  <% }); %> 
 
   <br>
   <a href="/manage/teams">&larr; Back to Your Teams</a>

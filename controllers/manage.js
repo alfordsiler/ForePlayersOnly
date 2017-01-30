@@ -53,16 +53,27 @@ router.post('/addplayers', function(req, res){
 });
 
 //get to display single team details
-router.get('/teams/:id', function(req, res) {
-  db.team.findById(req.params.id).then(function(team) {
-    if (team) {
-      res.render('manage/teamDetails', { team: team });
-    } else {
-      res.status(404).render('error');
-    }
-  }).catch(function(err) {
-    res.status(500).render('error');
-  });
+// router.get('/teams/:id', function(req, res) {
+//   db.team.findById(req.params.id).then(function(team) {
+//     if (team) {
+//       res.render('manage/teamDetails', { team: team });
+//     } else {
+//       res.status(404).render('error');
+//     }
+//   }).catch(function(err) {
+//     res.status(500).render('error');
+//   });
+// });
+
+//get to display players on each team
+router.get('/teams/:id', isLoggedIn, function(req, res){
+  db.team.find({ 
+    where: { id: req.params.id },
+  }).then(function(team){
+    team.getUsers().then(function(users){
+      res.render('manage/teamDetails', { team: team.name, users: users })
+    });
+  });//end then
 });
 
 //get edit team info
@@ -105,6 +116,27 @@ router.delete('/teams/:id', function(req, res){
     } else {
       res.status(404).send( {msg: 'error, try again'});
     }
+  }).catch(function(err){
+    res.status(500).send({ msg: 'error'});
+  });
+});
+
+//delete users from teams
+router.delete('/teams/user/:id', function(req, res){
+  console.log("in delete user")
+  db.team.findById(req.params.id).then(function(team){
+    console.log("team", team);
+    team.getUsers().then(function(user){
+      console.log("user", user);
+      if(user){
+        user.destroy().then(function(){
+          req.flash('success', 'Successfully removed player from team');
+          res.send({msg: 'success'});
+        })
+      } else {
+        res.status(404).send( {msg: 'error, try again'});
+      }
+    })
   }).catch(function(err){
     res.status(500).send({ msg: 'error'});
   });
