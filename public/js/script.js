@@ -17,13 +17,15 @@ $(function() {
   $('.delete-btn').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
-    return confirm('Are you sure?');
-    $.ajax({
-      url: url,
-      method: 'DELETE'
-    }).done(function() {
-      window.location.href = '/manage/teams';
-    });
+    var answer = confirm ("Are you sure you want to delete this team?");
+    if (answer) {
+      $.ajax({
+        url: url,
+        method: 'DELETE'
+      }).done(function() {
+        window.location.href = '/manage/teams';
+      });
+    };
   });
 });
 
@@ -45,12 +47,15 @@ $(function() {
   $('.delete-btn-tournaments').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
-    $.ajax({
-      url: url,
-      method: 'DELETE'
-    }).done(function() {
-      window.location.href = '/manage/tournaments';
-    });
+    var answer = confirm ("Are you sure you want to delete this tournament?");
+    if (answer) {
+      $.ajax({
+        url: url,
+        method: 'DELETE'
+      }).done(function() {
+        window.location.href = '/manage/tournaments';
+      });
+    };
   });
 });
 
