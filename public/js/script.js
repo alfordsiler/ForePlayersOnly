@@ -17,7 +17,7 @@ $(function() {
   $('.delete-btn').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
-
+    return confirm('Are you sure?');
     $.ajax({
       url: url,
       method: 'DELETE'
@@ -45,7 +45,6 @@ $(function() {
   $('.delete-btn-tournaments').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
-
     $.ajax({
       url: url,
       method: 'DELETE'
@@ -68,3 +67,7 @@ $(function() {
     });
   });
 });
+
+setTimeout(function(){
+  $('.alert').remove();
+}, 3000);
