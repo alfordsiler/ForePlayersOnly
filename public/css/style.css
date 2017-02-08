@@ -15,5 +15,11 @@ body {
 .demo {
   color: white;
   text-align: center;
+}
 
+#logout {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
 }
