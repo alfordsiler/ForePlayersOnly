@@ -11,3 +11,9 @@ body {
   background-image: url("http://bunkerhillgolf.com/wp-content/uploads/2013/12/Bunker-Hill-Green.jpg");
   color: white;
 }
+
+.demo {
+  color: white;
+  text-align: center;
+
+}
