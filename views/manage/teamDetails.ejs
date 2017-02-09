@@ -1,12 +1,28 @@
 <div class="background">
-  <h3>Here are the players on team "<%= team %>"</h3>
+  <h4>Here are the players on team "<%= team.name %>"</h4>
 
   <% users.forEach(function(user){ %>
     <ul>
-      <li><h3><%= user.firstName %> <%= user.lastName %> <a style="font-size: 8px;" href="/manage/teams/user/<%= user.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn"></a></h3></li>
+      <li><h4><%= user.firstName %> <%= user.lastName %> <a style="font-size: 8px; padding: 2px; margin-bottom: 5px;" href="/manage/teams/<%= user.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn-users"></a></h4></li>
     </ul>
   <% }); %> 
+
+  <hr>
+
+  <form action="/manage/teams/<%= team.id %>" method="POST">
+    <input type="hidden" value="<%= allUsers.id %>">
+    <label for="players">Select Player to add to this team:</label>
+      <select name="user">
+        <% allUsers.forEach(function(user){ %>
+          <option value="<%= user.id %>">
+          <%= user.firstName %> <%= user.lastName %>
+        <% }); %>
+      </select>
+
+      <input type="submit" class="btn btn-success" value="Add" style="font-size: 12px; height: 27px;">
+  </form>
 
   <br>
   <a href="/manage/teams">&larr; Back to Your Teams</a>
 </div>
+

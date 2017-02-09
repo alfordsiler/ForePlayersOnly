@@ -4,9 +4,12 @@
 <h5>Click on a tournament to view registered teams</h5>
 
 <hr>
+
+<% if(tournaments) { %>
+
 <% tournaments.forEach(function(tournament){ %>
 
-  <h3><a href="/view/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h3>
+  <h3><a href="/manage/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h3>
     <h5><strong>Created On: </strong><%= tournament.createdAt %></h5>
     <h5><strong>Date: </strong><%= tournament.date %></h5>
     <h5><strong>Course: </strong><%= tournament.course %></h5>
@@ -16,8 +19,14 @@
     <h5><strong>Other Details: </strong><%= tournament.details %></h5>
     <a href="/manage/tournaments/<%= tournament.id %>/edit" class="btn btn-info glyphicon glyphicon-edit"></a>
     <a href="/manage/tournaments/<%= tournament.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn-tournaments"></a>
-<hr>
-<% }); %> 
+    <hr>
+<% }); %>
+
+<% } else { %>
+
+    <h3>You have not created any tournments.</h3>
+
+<% }; %>
 
 <a href="/profile">&larr; Back to Profile</a>
 </div>

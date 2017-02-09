@@ -63,13 +63,15 @@ $(function() {
   $('.delete-btn-users').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
-
-    $.ajax({
+    var answer = confirm("Are you sure you want to remove this player from the team?")
+    if (answer) {
+      $.ajax({
       url: url,
       method: 'DELETE'
     }).done(function() {
-      window.location.href = '/view/teams';
+      window.location.href = '/manage/teamDetails';
     });
+    };
   });
 });
 
