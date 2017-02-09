@@ -92,7 +92,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.use('/register', require('./controllers/register'));
 app.use('/tournament', require('./controllers/tournament'));
 app.use('/manage', require('./controllers/manage'));
-app.use('/view', require('./controllers/view'));
+// app.use('/view', require('./controllers/view'));
 
 //listen
 var server = app.listen(process.env.PORT || 3000);

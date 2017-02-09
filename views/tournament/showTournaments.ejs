@@ -1,11 +1,11 @@
-<div class="background">
+<div class="remove">
 
-<h3>All created tournaments are listed below. Still need to edit date and show name of tournament creator</h3>
+<h3>All created tournaments are listed below.</h3>
 <hr>
 <% tournaments.forEach(function(tournament){ %>
 
     <h4><%= tournament.name %></h4>
-    <h5>Date: <%= tournament.date %></h5>
+    <h5>Tournament Date: <%= tournament.date.toDateString() %></h5>
 
   <form action="/tournament/allTournaments" method="POST">
     <input type="hidden" name="tournamentId" value="<%= tournament.id %>">
@@ -22,5 +22,6 @@
 <hr>
 <% }); %> 
 
-</div>
 <a href="/manage/tournaments">&larr; Back to Your Tournaments</a>
+
+</div>

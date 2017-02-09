@@ -14,7 +14,7 @@ $(function() {
     });
   });
 
-  $('.delete-btn').click(function(e) {
+  $('.delete-btn-teams').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
     var answer = confirm ("Are you sure you want to delete this team?");
@@ -66,11 +66,27 @@ $(function() {
     var answer = confirm("Are you sure you want to remove this player from the team?")
     if (answer) {
       $.ajax({
-      url: url,
-      method: 'DELETE'
+        url: url,
+        method: 'DELETE'
     }).done(function() {
-      window.location.href = '/manage/teamDetails';
+      window.location.href = '/manage/teams';
     });
+    };
+  });
+});
+
+$(function() {
+  $('.delete-btn-tourneyTeams').click(function(e) {
+    e.preventDefault();
+    var url = $(this).attr('href');
+    var answer = confirm ("Are you sure you want to delete this team?");
+    if (answer) {
+      $.ajax({
+        url: url,
+        method: 'DELETE'
+      }).done(function() {
+        window.location.href = '/manage/tournaments';
+      });
     };
   });
 });
@@ -78,3 +94,5 @@ $(function() {
 setTimeout(function(){
   $('.alert').remove();
 }, 3000);
+
+$(".remove" ).parents().css( "background-image", "none" );
