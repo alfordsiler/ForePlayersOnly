@@ -4,9 +4,11 @@
 <h7>*Please note: Once you register your team(s), you will have to contact the tournament creator to unregister.</h7>
 <hr>
 <% tournaments.forEach(function(tournament){ %>
-
     <h4><%= tournament.name %></h4>
     <h5>Tournament Date: <%= tournament.date.toDateString() %></h5>
+    <% users.forEach(function(user){ %>
+      <h5>Tournament Manager: <%= user.firstName %></h5>
+    <% }); %>
 
   <form action="/tournament/allTournaments" method="POST">
     <input type="hidden" name="tournamentId" value="<%= tournament.id %>">

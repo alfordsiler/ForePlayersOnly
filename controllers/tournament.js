@@ -72,23 +72,32 @@ router.post('/new', isLoggedIn, function(req, res){
 
 // get to display all tournaments
 router.get("/allTournaments", isLoggedIn, function(req, res){
+  var users;
   var tournaments;
   var teams;
-  var user = req.user;
-    db.tournament.findAll()
-      .then(function(resultsTournaments){
-        tournaments = resultsTournaments;
-      })
-      .then(function(){
-        return db.team.findAll({
-          where: { userId: user.id },
-          order: '"name" ASC'})
-      }).then(function(resultsTeams){
-        teams = resultsTeams;
-      }).then(function(){
-        res.render('tournament/showTournaments', { tournaments: tournaments, teams: teams });
-      });
+  var currentUser = req.user;
+  console.log("req.body", req.user)
+
+  db.tournament.findAll()
+  .then(function(resultsTournaments){
+    tournaments = resultsTournaments;
+    return db.user.findAll({
+      where: { id: tournaments.userId }
+    })
+    .then(function(resultsUsers){
+      users = resultsUsers;
+    })
+    .then(function(){
+      return db.team.findAll({
+        where: { userId: currentUser.id },
+        order: '"name" ASC'})
+    }).then(function(resultsTeams){
+      teams = resultsTeams;
+    }).then(function(){
+      res.render('tournament/showTournaments', { tournaments: tournaments, teams: teams, users: users });
+    });
   });
+});
 
 //post to add teams to tournaments
 router.post('/allTournaments', isLoggedIn, function(req, res){
