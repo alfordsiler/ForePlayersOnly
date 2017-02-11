@@ -1,6 +1,7 @@
 <div class="remove">
 
-<h3>All created tournaments are listed below.</h3>
+<h3>All tournaments are listed below.</h3>
+<h7>*Please note: Once you register your team(s), you will have to contact the tournament creator to unregister.</h7>
 <hr>
 <% tournaments.forEach(function(tournament){ %>
 
@@ -17,11 +18,11 @@
         <% }); %>
       </select>
 
-      <input type="submit" class="btn btn-success" value="Register Team for this Tournament" style="font-size: 12px; height: 27px;">
+      <input type="submit" class="add btn btn-success" value="Register Team for this Tournament">
   </form>
 <hr>
 <% }); %> 
 
-<a href="/manage/tournaments">&larr; Back to Your Tournaments</a>
+<a href="/profile">&larr; Back to Manage Teams/Tournaments</a>
 
 </div>

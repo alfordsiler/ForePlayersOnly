@@ -19,7 +19,6 @@ router.get('/teams', isLoggedIn, function(req, res){
 //get to display players on each team
 router.get('/teams/:id', isLoggedIn, function(req, res){
   var allUsers;
-  var user = req.user;
   db.user.findAll()
   .then(function(resultsUsers){
     allUsers = resultsUsers;
@@ -34,6 +33,35 @@ router.get('/teams/:id', isLoggedIn, function(req, res){
       });
     });
   });
+});
+
+//get to display all teams user can join
+router.get('/joinTeam', isLoggedIn, function(req, res){
+  var user = req.user;
+  var users;
+  db.team.findAll({
+    order: '"name" ASC'
+  }).then(function(teams){
+    db.user.findAll()
+    .then(function(creators){
+      users = creators;
+      res.render('manage/joinTeam', { teams: teams, user: user, users: users });
+    });
+  });//end then
+});
+
+//post for current user to join a team
+router.post('/joinTeam', isLoggedIn, function(req, res){
+  db.team.findById(req.body.teamId)
+    .then(function(team){
+  db.user.findOne({
+    where: { id: req.body.userId } 
+    }).then(function(user){
+      team.addUser(user);
+      req.flash('success', 'Successfully joined ' + team.name);
+      res.redirect('back');
+    });//end then
+  });//end then
 });
 
 //post to add users to teams
@@ -99,7 +127,7 @@ router.delete('/teams/:id', isLoggedIn, function(req, res){
   });
 });
 
-//delete users from teams
+//delete players from teams
 // router.delete('/teams/:id/user', isLoggedIn, function(req, res){
 //   console.log("in delete user");
 //   db.team.findById(req.params.id)

@@ -10,15 +10,15 @@
 <% tournaments.forEach(function(tournament){ %>
 
   <h3><a href="/manage/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h3>
-    <h5><strong>Created On: </strong><%= tournament.createdAt %></h5>
-    <h5><strong>Date: </strong><%= tournament.date %></h5>
+    <h5><strong>Created On: </strong><%= tournament.createdAt.toDateString() %></h5>
+    <h5><strong>Date: </strong><%= tournament.date.toDateString() %></h5>
     <h5><strong>Course: </strong><%= tournament.course %></h5>
     <h5><strong>Format: </strong><%= tournament.format %></h5>
     <h5><strong>Entry Fee: $</strong><%= tournament.entryFee %></h5>
     <h5><strong>Meal Details: </strong><%= tournament.mealInfo %></h5>
     <h5><strong>Other Details: </strong><%= tournament.details %></h5>
-    <a href="/manage/tournaments/<%= tournament.id %>/edit" class="btn btn-info glyphicon glyphicon-edit"></a>
-    <a href="/manage/tournaments/<%= tournament.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn-tournaments"></a>
+    <a href="/manage/tournaments/<%= tournament.id %>/edit" class="manage-btn btn btn-info glyphicon glyphicon-edit"></a>
+    <a href="/manage/tournaments/<%= tournament.id %>" class="manage-btn btn btn-danger glyphicon glyphicon-trash delete-btn-tournaments"></a>
     <hr>
 <% }); %>
 
@@ -28,5 +28,5 @@
 
 <% }; %>
 
-<a href="/profile">&larr; Back to Profile</a>
+<a href="/profile">&larr; Back to Manage Teams/Tournaments</a>
 </div>

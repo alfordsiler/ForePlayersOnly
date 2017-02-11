@@ -1,0 +1,20 @@
+<div class="remove">
+  <h3>All teams are listed below (alphabetically). Click the "Join Team" button to add yourself to that team.</h3>
+  <h7>*Please note: If you join team, you will have to contact the team creator if you want to be removed from that team.</h7>
+
+<hr>
+  
+  <% teams.forEach(function(team){ %>
+    <form action="/manage/joinTeam" method="POST">
+      <h4 style="margin-bottom: 0px;"><%= team.name %>&nbsp;</h4>
+      <p>Created by: <%= users.name %></p>
+      <input type="hidden" name="userId" value="<%= user.id %>">
+      <input type="hidden" name="teamId" value="<%= team.id %>">
+      <input type="submit" class="add btn btn-success" value="Join Team">
+    </form>
+    <hr>
+  <% }); %>
+
+</div>
+<a href="/profile">&larr; Back to Manage Teams/Tournaments</a>
+

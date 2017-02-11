@@ -11,7 +11,7 @@ router.get('/new', isLoggedIn, function(req, res){
 });
 
 //post the new tournament to table
-router.post('/new', function(req, res){
+router.post('/new', isLoggedIn, function(req, res){
   // console.log("/tournament/new", req.user);
   console.log("/tournament/new post req.body", req.body);
   var name = req.body.tournamentName;
@@ -91,7 +91,7 @@ router.get("/allTournaments", isLoggedIn, function(req, res){
   });
 
 //post to add teams to tournaments
-router.post('/allTournaments', function(req, res){
+router.post('/allTournaments', isLoggedIn, function(req, res){
   console.log('show req.body.teams: ', req.body.teams);
   console.log('show req.body.tournamentId: ', req.body.tournamentId);
   db.tournament.findOne({
@@ -101,8 +101,8 @@ router.post('/allTournaments', function(req, res){
       where: { id: req.body.teams }
     }).then(function(team){
       tournament.addTeam(team);
-      req.flash('success', 'Team registered for tournament')
-      res.redirect('/profile');
+      req.flash('success', team.name + ' registered for ' + tournament.name)
+      res.redirect('back');
     });
   });
 });

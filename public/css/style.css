@@ -16,3 +16,17 @@ body {
   padding: 5px;
   border-radius: 5px;
 }
+.trash {
+  font-size: .5em; 
+  padding: 2px 4px; 
+  margin-bottom: 6px;
+}
+.manage-btn{
+  font-size: 1em; 
+  padding: 3px 8px;
+}
+.add {
+  font-size: .9em;
+  padding: 2px 6px;
+  margin-bottom: 2px;
+}
