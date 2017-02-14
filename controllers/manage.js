@@ -152,21 +152,20 @@ router.delete('/teams/:id', isLoggedIn, function(req, res){
 // });
 
 //delete players from team
-router.delete('/teams/:id', isLoggedIn, function(req, res){
+router.delete('/teams/:id/user', isLoggedIn, function(req, res){
   console.log("req.params", req.params);
-  db.team.find({ 
-      where: { id: req.params.id }
-    }).then(function(team){
-      team.getUsers()
-      .then(function(user){
-        user.destroy()
-        .then(function(){
-          req.flash('success', 'Successfully removed player from team');
-          res.send({msg: 'success'});
-        });
-      });
+  console.log("req.body", req.body)
+  db.users_teams.find({ 
+    where: { userId: 1 }
+  })
+  .then(function(user){
+    user.destroy()
+    .then(function(){
+      req.flash('success', 'Successfully removed player from team');
+      res.send({msg: 'success'});
     });
   });
+});
 
 //get to display all tournaments created by logged in user
 router.get("/tournaments", isLoggedIn, function(req, res){

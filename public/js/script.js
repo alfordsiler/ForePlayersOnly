@@ -14,7 +14,7 @@ $(function() {
     });
   });
 
-  $('.delete-btn-teams').click(function(e) {
+  $('.delete-btn-team').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
     var answer = confirm ("Are you sure you want to delete this team?");
@@ -79,7 +79,7 @@ $(function() {
   $('.delete-btn-tourneyTeams').click(function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
-    var answer = confirm ("Are you sure you want to delete this team?");
+    var answer = confirm ("Are you sure you want to unregister this team from the tournament?");
     if (answer) {
       $.ajax({
         url: url,

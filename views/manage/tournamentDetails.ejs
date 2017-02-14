@@ -4,7 +4,9 @@
 
 <ol>
 <% teams.forEach(function(team){ %>
-  <li><h4><a href="/manage/teams/<%= team.id %>"><%= team.name %></a> &nbsp <a href="/manage/teams/<%= team.id %>" class="trash btn btn-danger glyphicon glyphicon-trash delete-btn-users"></a></h4></li>
+  <li><h4><a href="/manage/teams/<%= team.id %>"><%= team.name %></a> &nbsp 
+<!--   <a href="/manage/teams/user %>" class="trash btn btn-danger glyphicon glyphicon-trash delete-btn-tourneyTeams"></a> -->
+  </h4></li>
 <% }); %> 
 </ol>
 
