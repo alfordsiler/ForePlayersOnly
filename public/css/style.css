@@ -1,5 +1,7 @@
 body {
   font-family: 'Raleway', sans-serif;
+  background-image: url("../img/golfcourse.jpg");
+  background-size: cover;
   background-image: url("https://www.briardalegreens.com/static/images/event_promo_box_golfcourseBG.jpg");
 }
 .whiteText {
