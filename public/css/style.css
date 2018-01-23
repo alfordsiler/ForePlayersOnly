@@ -1,6 +1,7 @@
 body {
   font-family: 'Raleway', sans-serif;
-  background-image: url("http://bunkerhillgolf.com/wp-content/uploads/2013/12/Bunker-Hill-Green.jpg");
+  background-image: url("../img/golfcourse.jpg");
+  background-size: cover;
 }
 .whiteText {
   color: white;
